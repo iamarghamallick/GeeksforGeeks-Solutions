@@ -13,23 +13,27 @@ class Solution
 {
     public:
     //Function to check if two strings are isomorphic.
-    bool areIsomorphic(string str1, string str2)
-    {
-        
+    bool areIsomorphic(string str1, string str2) {
         // Your code here
-        if(str1.size() != str2.size())
-            return false;
+        if(str1.size() != str2.size())  return false;
         
-        int n = str1.size();
-        unordered_map<char, char> map1;
-        unordered_map<char, char> map2;
+        unordered_map<char, char> map;
         
-        for(int i=0; i<n; i++) {
-            if(map1[str1[i]] == '\0' && map2[str2[i]] == '\0') {
-                map1[str1[i]] = str2[i];
-                map2[str2[i]] = str1[i];
-            } else if(map1[str1[i]] != str2[i] || map2[str2[i]] != str1[i]) {
-                return false;
+        for(int i=0; i<str1.size(); i++) {
+            // if str1[i] is already present as a key in map
+            if(map.count(str1[i])) {
+                if(map[str1[i]] != str2[i])
+                    return false;
+            } else {
+                // if str2[i] is present as a value in map
+                vector<char> arr;
+                for(auto it: map)
+                    arr.push_back(it.second);
+                
+                if(find(arr.begin(), arr.end(), str2[i]) != arr.end())
+                    return false;
+                else
+                    map[str1[i]] = str2[i];
             }
         }
         
