@@ -9,9 +9,7 @@ using namespace std;
 
 class Solution{   
 public:
-    int dp[101][10001];
-    
-    int solve(vector<int> arr, int sum, int n) {
+    int solve(vector<int> arr, int sum, int n, int** dp) {
         // base cases
         if(sum == 0)    return 1;
         if(n < 0)  return 0;
@@ -20,11 +18,11 @@ public:
             return dp[n][sum];
             
         if(arr[n] > sum) {
-            dp[n][sum] = solve(arr, sum, n-1);
+            dp[n][sum] = solve(arr, sum, n-1, dp);
             return dp[n][sum];
         }
         
-        dp[n][sum] = solve(arr, sum - arr[n], n-1) || solve(arr, sum, n-1);
+        dp[n][sum] = solve(arr, sum - arr[n], n-1, dp) || solve(arr, sum, n-1, dp);
         
         return dp[n][sum];
     }
@@ -33,9 +31,17 @@ public:
         // code here 
         int n = arr.size();
         
-        memset(dp, -1, sizeof(dp));
+        int** dp;
+        dp = new int*[n];
+
+        for(int i=0; i<n; i++)
+            dp[i] = new int[sum+1];
+
+        for (int i = 0; i < n; i++) 
+            for (int j = 0; j < sum + 1; j++) 
+                dp[i][j] = -1;
         
-        return solve(arr, sum, n-1);
+        return solve(arr, sum, n-1, dp);
     }
 };
 
