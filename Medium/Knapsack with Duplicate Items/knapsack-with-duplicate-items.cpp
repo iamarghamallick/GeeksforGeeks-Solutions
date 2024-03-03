@@ -9,23 +9,26 @@ using namespace std;
 
 class Solution{
 public:
-    int knapSack(int N, int W, int val[], int wt[])
-    {
-        // code here
-        int a[N+1][W+1];
-        for( int i=0; i<N+1; i++) {
-            for(int j=0; j<W+1; j++) {
-                if( i==0 or j==0) {
-                    a[i][j] = 0;
-                    continue;
-                }
-                if( wt[i-1] <= j)
-                    a[i][j] = max ( val[i-1]+ a[i][j-wt[i-1]], a[i-1][j]);
-                else 
-                    a[i][j] = a[i-1][j];
-            }
+    int solve(int N, int W, int val[], int wt[], vector<vector<int>> &dp) {
+        if(N < 0)
+            return 0;
+        
+        if(dp[N][W] != -1)
+            return dp[N][W];
+            
+        if(wt[N] <= W) {
+            // we have two choise -> i. Include the item || ii. Don't include the item
+            return dp[N][W] = max(val[N] + solve(N, W - wt[N], val, wt, dp), solve(N-1, W, val, wt, dp));
+        } else {
+            // no choise ( Cannot include the item )
+            return dp[N][W] = solve(N-1, W, val, wt, dp);
         }
-        return a[N][W];
+    }
+    
+    int knapSack(int N, int W, int val[], int wt[]) {
+        // code here
+        vector<vector<int>> dp(N+1, vector<int> (W+1, -1));
+        return solve(N-1, W, val, wt, dp);
     }
 };
 
