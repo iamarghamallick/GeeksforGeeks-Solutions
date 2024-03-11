@@ -30,6 +30,42 @@ class Solution {
             }
         }
         
+        // PRINTING Shortest Common Supersequence
+        // string s = "";
+        // int i = m, j = n;
+        
+        // while(i > 0 && j > 0) {
+        //     if(X[i-1] == Y[j-1]) {
+        //         s += X[i-1];
+        //         i--; j--;
+        //     }
+            
+        //     // Notice the code variation here with
+        //     // with printing LCS problem
+        //     else if(dp[i][j-1] > dp[i-1][j]) {
+        //         s += Y[j-1];
+        //         j--;
+        //     } else {
+        //         s += X[i-1];
+        //         i--;
+        //     }
+        // }
+        
+        // // include the remaining chars of X or Y (if any)
+        // while(i > 0) {
+        //     s += X[i-1];
+        //     i--;
+        // }
+        // while(j > 0) {
+        //     s += Y[j-1];
+        //     j--;
+        // }
+        
+        // // finally reverse the string s to find required SCS
+        // reverse(s.begin(), s.end());
+        
+        // cout << s;
+        
         return m + n - dp[m][n];
     }
 };
