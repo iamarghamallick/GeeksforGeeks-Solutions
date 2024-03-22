@@ -9,7 +9,7 @@ using namespace std;
 
 class Solution{
 public:
-    // Approch 1: Only recursive, Res: Time Limit Exceeded
+    // Approch 1: Only recursive, Result: Time Limit Exceeded
     // int solve(int arr[], int i, int j) {
     //     // base case
     //     if(i >= j)  return 0;
@@ -43,12 +43,15 @@ public:
             ans = min(ans, tempAns);
         }
         
+        // store the current result into dp[][] table, then return
         return dp[i][j] = ans;
     }
     
     int matrixMultiplication(int N, int arr[]) {
+        // initialize the globally declared dp[][] table with value -1
         memset(dp, -1, sizeof(dp));
         
+        // choosing the i-th index and j-th index : i = 1 and j = N-1 (at the initial)
         return solve(arr, 1, N-1);
     }
 };
