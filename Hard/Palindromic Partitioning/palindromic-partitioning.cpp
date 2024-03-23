@@ -38,29 +38,7 @@ public:
     //     return ans;
     // }
     
-    // Approch 2: Memoized Recursion -> Result: TLE
-    // int dp[501][501];
-    // int solve(string str, int i, int j) {
-    //     // base condition
-    //     if(i >= j)  return 0;
-    //     // if the string is already a palindrom, no partitioning needed
-    //     if(isPalindrom(str, i, j))    return 0;
-        
-    //     // if the current sub-problem is already solved
-    //     if(dp[i][j] != -1)  return dp[i][j];
-        
-    //     // next logic
-    //     int ans = INT_MAX;
-    //     for(int k=i; k<=j-1; k++) {
-    //         int tempAns = solve(str, i, k) + solve(str, k+1, j) + 1;
-    //         ans = min(ans, tempAns);
-    //     }
-        
-    //     // store the result, then return 
-    //     return dp[i][j] = ans;
-    // }
-    
-    // Approch 3: Memoized Recursion with more optimization -> Result: Accepted
+    // Approch 2: Memoized Recursion -> Result: Accepted
     int dp[501][501];
     int solve(string str, int i, int j) {
         // base condition
@@ -74,29 +52,53 @@ public:
         // next logic
         int ans = INT_MAX;
         for(int k=i; k<=j-1; k++) {
-            int leftAns, rightAns;
-            
-            // check if the left sub-problem is already solved or not
-            if(dp[i][k] != -1)
-                leftAns = dp[i][k];
-            else {
-                leftAns = dp[i][k] = solve(str, i, k);
+            if(isPalindrom(str, i, k)) { // notice the isPalindrom() function call
+                int tempAns = solve(str, i, k) + solve(str, k+1, j) + 1;
+                ans = min(ans, tempAns);
             }
-                
-            // check if the right sub-problem is already solved or not
-            if(dp[k+1][j] != -1)
-                rightAns = dp[k+1][j];
-            else {
-                rightAns = dp[k+1][j] = solve(str, k+1, j);
-            }
-            
-            int tempAns = leftAns + rightAns + 1;
-            ans = min(ans, tempAns);
         }
         
         // store the result, then return 
         return dp[i][j] = ans;
     }
+    
+    // Approch 3: Memoized Recursion with more optimization -> Result: Accepted
+    // int dp[501][501];
+    // int solve(string str, int i, int j) {
+    //     // base condition
+    //     if(i >= j)  return 0;
+    //     // if the string is already a palindrom, no partitioning needed
+    //     if(isPalindrom(str, i, j))    return 0;
+        
+    //     // if the current sub-problem is already solved
+    //     if(dp[i][j] != -1)  return dp[i][j];
+        
+    //     // next logic
+    //     int ans = INT_MAX;
+    //     for(int k=i; k<=j-1; k++) {
+    //         int leftAns, rightAns;
+            
+    //         // check if the left sub-problem is already solved or not
+    //         if(dp[i][k] != -1)
+    //             leftAns = dp[i][k];
+    //         else {
+    //             leftAns = dp[i][k] = solve(str, i, k);
+    //         }
+                
+    //         // check if the right sub-problem is already solved or not
+    //         if(dp[k+1][j] != -1)
+    //             rightAns = dp[k+1][j];
+    //         else {
+    //             rightAns = dp[k+1][j] = solve(str, k+1, j);
+    //         }
+            
+    //         int tempAns = leftAns + rightAns + 1;
+    //         ans = min(ans, tempAns);
+    //     }
+        
+    //     // store the result, then return 
+    //     return dp[i][j] = ans;
+    // }
     
     int palindromicPartition(string str) {
         // initializing dp array
