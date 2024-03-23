@@ -76,12 +76,14 @@ public:
         for(int k=i; k<=j-1; k++) {
             int leftAns, rightAns;
             
+            // check if the left sub-problem is already solved or not
             if(dp[i][k] != -1)
                 leftAns = dp[i][k];
             else {
                 leftAns = dp[i][k] = solve(str, i, k);
             }
-            
+                
+            // check if the right sub-problem is already solved or not
             if(dp[k+1][j] != -1)
                 rightAns = dp[k+1][j];
             else {
