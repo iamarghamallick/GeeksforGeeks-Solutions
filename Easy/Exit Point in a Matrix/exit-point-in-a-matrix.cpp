@@ -6,19 +6,21 @@ using namespace std;
 // } Driver Code Ends
 class Solution {
   public:
+    pair<int, int> dir(string d) {
+        if(d == "left")  return make_pair(0, -1);
+        if(d == "right") return make_pair(0, 1);
+        if(d == "up")    return make_pair(-1, 0);
+        return make_pair(1, 0); // if(d == "down")
+    }
+    
+    string moveRight(string d) {
+        if(d == "left")  return "up";
+        if(d == "right") return "down";
+        if(d == "up")    return "right";
+        return "left"; // if(d == "down")
+    }
+    
     vector<int> FindExitPoint(int n, int m, vector<vector<int>>& mat) {
-        unordered_map<string, pair<int, int> > dir;
-        dir["left"] = make_pair(0, -1);
-        dir["right"] = make_pair(0, 1);
-        dir["up"] = make_pair(-1, 0);
-        dir["down"] = make_pair(1, 0);
-        
-        unordered_map<string, string> moveRight;
-        moveRight["left"] = "up";
-        moveRight["right"] = "down";
-        moveRight["up"] = "right";
-        moveRight["down"] = "left";
-        
         string currDir = "right";
         vector<int> ans(2);
         int i = 0, j = 0;
@@ -28,11 +30,11 @@ class Solution {
             
             if(mat[i][j] == 1) {
                 mat[i][j] = 0;
-                currDir = moveRight[currDir];
+                currDir = moveRight(currDir);
             }
             
-            i += dir[currDir].first;
-            j += dir[currDir].second;
+            i += dir(currDir).first;
+            j += dir(currDir).second;
             
         } while(i >= 0 && i < mat.size() && j >= 0 && j < mat[0].size());
         
