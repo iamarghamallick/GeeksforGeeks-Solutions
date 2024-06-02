@@ -55,10 +55,10 @@ class Solution {
         for(auto &q : qrs) {
             int x = q[1];
             
-            if(q[0] == 0) {
+            if(q[0] == 0)
                 // Add x to the list
                 ans.push_back(x ^ currXor);
-            } else
+            else
                 // XOR each element by x
                 currXor ^= x;
         }
