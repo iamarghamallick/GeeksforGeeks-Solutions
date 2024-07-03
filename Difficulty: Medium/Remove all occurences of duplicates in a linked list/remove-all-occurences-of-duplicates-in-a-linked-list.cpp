@@ -31,39 +31,31 @@ struct Node {
 class Solution {
   public:
     Node* removeAllDuplicates(struct Node* head) {
-        struct Node* ans = nullptr, *temp = nullptr;
-        int count = 1;
-        int val = head->data;
-        struct Node* curr = head->next;
-        
+        struct Node* ans = nullptr, *temp = nullptr, *curr = head->next;
+        int count = 1, val = head->data;
         while(curr) {
             if(curr->data == val)
                 count++;
             else {
-                if(count == 1) {
-                    if(!ans) {
-                        ans = new Node(val);
-                        temp = ans;
-                    } else {
-                        temp->next = new Node(val);
-                        temp = temp->next;
-                    }
-                }
+                if(count == 1)  insert(ans, temp, val);
                 count = 1;
                 val = curr->data;
             }
             curr = curr->next;
         }
-        if(count == 1) {
-            if(!ans) {
-                ans = new Node(val);
-                temp = ans;
-            } else {
-                temp->next = new Node(val);
-                temp = temp->next;
-            }
-        }
+        if(count == 1)  insert(ans, temp, val);
         return ans;
+    }
+    
+  private:
+    void insert(struct Node* &ans, struct Node* &temp, int val) {
+        if(!ans) {
+            ans = new Node(val);
+            temp = ans;
+        } else {
+            temp->next = new Node(val);
+            temp = temp->next;
+        }
     }
 };
 
