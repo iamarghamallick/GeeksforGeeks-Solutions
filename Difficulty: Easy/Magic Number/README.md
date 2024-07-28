@@ -1,0 +1,10 @@
+<h2><a href="https://www.geeksforgeeks.org/problems/magic-number4431/1">Magic Number</a></h2><h3>Difficulty Level : Difficulty: Easy</h3><hr><div class="problems_problem_content__Xm_eO"><p><span style="font-size: 20px;">A magic number is defined as a number that can be expressed as a power of 5 or sum of unique powers of 5. First few magic numbers are 5, 25, 30(5 + 25), 125, 130(125 + 5), …<br>Given the value of n, find the n'th Magic number modulo </span><span style="font-size: 18px;">10<sup>9</sup>+7</span><span style="font-size: 20px;">.</span></p>
+<p><span style="font-size: 18px;"><strong>Example 1:</strong></span></p>
+<pre><span style="font-size: 18px;"><strong>Input: </strong>n = 1
+<strong>Output:</strong> 5
+<strong>Explanation</strong>: 1'st Magic number is 5.</span></pre>
+<p><span style="font-size: 18px;">â€‹<strong>Example 2:</strong></span></p>
+<pre><span style="font-size: 18px;"><strong>Input</strong>: n = 2
+<strong>Output:</strong> 25
+<strong>Explanation</strong>: 2'nd Magic number is 25. </span></pre>
+<p><span style="font-size: 18px;"><strong>Your Task:&nbsp;&nbsp;</strong><br>You don't need to read input or print anything. Your task is to complete the function&nbsp;<strong>nthMagicNo</strong><strong>()</strong>&nbsp;which takes <strong>n</strong> input and returns the answer with </span><span style="font-size: 20px;">modulo </span><span style="font-size: 18px;">10<sup>9</sup>+7</span><span style="font-size: 18px;">.<br><br><strong>Expected Time Complexity:</strong>&nbsp;O(log n)<br><strong>Expected Auxiliary Space:</strong>&nbsp;O(1)</span><br><br><span style="font-size: 18px;"><strong>Constraints:</strong><br>1 ≤ n ≤ 10<sup>5</sup></span></p></div><p><span style=font-size:18px><strong>Company Tags : </strong><br><code>Amazon</code>&nbsp;<br><p><span style=font-size:18px><strong>Topic Tags : </strong><br><code>Mathematical</code>&nbsp;<code>Algorithms</code>&nbsp;
