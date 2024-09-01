@@ -43,41 +43,24 @@ struct Node
 
 class Solution {
   public:
-    Node* addOne(Node* head) {
-        head = reverse(head);
-        
-        int carry = 1;
-        Node* curr = head;
-        
-        while(curr) {
-            if(curr->data == 9)
-                curr->data = 0;
-            else {
-                curr->data++;
-                break;
-            }
-            if(!curr->next && carry) {
-                curr->next = new Node(carry);
-                break;
-            }
-            curr = curr->next;
-        }
-        
-        return reverse(head);;
+    int carry = 1;
+    
+    void solve(Node* &head) {
+        if(!head)   return;
+        solve(head->next);
+        int sum = head->data + carry;
+        head->data = sum % 10;
+        carry = sum / 10;
     }
     
-  private:
-    Node* reverse(Node* head) {
-        Node* prev = nullptr, *curr = head, *next = nullptr;
-        
-        while(curr) {
-            next = curr->next;
-            curr->next = prev;
-            prev = curr;
-            curr = next;
+    Node* addOne(Node* head) {
+        solve(head);
+        if(carry) {
+            Node* newHead = new Node(1);
+            newHead->next = head;
+            return newHead;
         }
-        
-        return prev;
+        return head;
     }
 };
 
