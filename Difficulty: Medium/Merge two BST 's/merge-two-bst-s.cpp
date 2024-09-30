@@ -92,43 +92,36 @@ struct Node {
     }
 };
 */
-
 class Solution {
   public:
+    void inorder(Node* root, vector<int> &a) {
+        if(!root) return;
+        inorder(root->left, a);
+        a.push_back(root->data);
+        inorder(root->right, a);
+    }
+    
     // Function to return a list of integers denoting the node
     // values of both the BST in a sorted order.
     vector<int> merge(Node *root1, Node *root2) {
-        vector<int> arr1, arr2, ans;
-        inorder(root1, arr1);
-        inorder(root2, arr2);
-        
+        vector<int> a1, a2, ans;
+        inorder(root1, a1);
+        inorder(root2, a2);
         int i = 0, j = 0;
-        while(i < arr1.size() && j < arr2.size()) {
-            if(arr1[i] == arr2[j]) {
-                ans.push_back(arr1[i++]);
-                ans.push_back(arr2[j++]);
-            } else if(arr1[i] < arr2[j])
-                ans.push_back(arr1[i++]);
-              else 
-                ans.push_back(arr2[j++]);
+        while(i < a1.size() && j < a2.size()) {
+            if(a1[i] == a2[j])
+                ans.push_back(a1[i++]), ans.push_back(a2[j++]);
+            else if(a1[i] < a2[j])
+                ans.push_back(a1[i++]);
+            else 
+                ans.push_back(a2[j++]);
         }
-        
-        while(i < arr1.size())
-            ans.push_back(arr1[i++]);
-            
-        while(j < arr2.size())
-            ans.push_back(arr2[j++]);
+        while(i < a1.size())
+            ans.push_back(a1[i++]);
+        while(j < a2.size())
+            ans.push_back(a2[j++]);
         
         return ans;
-    }
-
-  private:
-    void inorder(Node *root, vector<int> &arr) {
-        if(!root)
-            return;
-        inorder(root->left, arr);
-        arr.push_back(root->data);
-        inorder(root->right, arr);
     }
 };
 
