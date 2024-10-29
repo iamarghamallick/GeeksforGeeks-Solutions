@@ -41,8 +41,6 @@ void printList(struct Node* node) {
 
 // } Driver Code Ends
 
-#include <algorithm>
-
 /* a node of the singly linked list
 struct node
 {
@@ -58,20 +56,44 @@ struct node
 // Solution class with quickSort function
 class Solution {
   public:
+    struct Node* getTail(struct Node* head) {
+        struct Node* curr = head;
+        while(curr && curr->next)
+            curr = curr->next;
+        return curr;
+    }
+    
+    struct Node* partition(struct Node* head, struct Node* tail) {
+        struct Node* pivot = head, *prev = head, *curr = head;
+        
+        while(curr != tail->next) {
+            if(curr->data < pivot->data) {
+                swap(curr->data, prev->next->data);
+                prev = prev->next;
+            }
+            
+            curr = curr->next;
+        }
+        
+        swap(pivot->data, prev->data);
+        
+        return prev;
+    }
+    
+    void quickSortHelper(struct Node* head, struct Node* tail) {
+        if(!head || head == tail)
+            return;
+        
+        struct Node* pivot = partition(head, tail);
+        
+        quickSortHelper(head, pivot);
+        quickSortHelper(pivot->next, tail);
+        
+    }
+    
     struct Node* quickSort(struct Node* head) {
-        vector<int> arr;
-        struct Node* temp = head;
-        while(temp) {
-            arr.push_back(temp->data);
-            temp = temp->next;
-        }
-        sort(arr.begin(), arr.end());
-        temp = head;
-        int idx = 0;
-        while(temp) {
-            temp->data = arr[idx++];
-            temp = temp->next;
-        }
+        struct Node* tail = getTail(head);
+        quickSortHelper(head, tail);
         return head;
     }
 };
