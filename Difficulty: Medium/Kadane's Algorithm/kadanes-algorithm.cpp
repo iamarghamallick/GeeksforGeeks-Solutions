@@ -10,16 +10,12 @@ class Solution {
   public:
     // Function to find the sum of contiguous subarray with maximum sum.
     int maxSubarraySum(vector<int> &arr) {
-        long long ans = arr[0];
-        long long sum = 0;
-        
-        for(int i=0; i<arr.size(); i++) {
-            sum += arr[i];
-            ans = max(ans, sum);
-            if(sum < 0)
-                sum = 0;
+        int ans = arr[0];
+        int maxEnding = arr[0];
+        for(int i=1; i<arr.size(); i++) {
+            maxEnding = max(maxEnding + arr[i], arr[i]);
+            ans = max(ans, maxEnding);
         }
-        
         return ans;
     }
 };
