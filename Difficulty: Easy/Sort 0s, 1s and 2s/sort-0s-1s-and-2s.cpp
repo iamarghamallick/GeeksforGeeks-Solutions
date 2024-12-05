@@ -6,28 +6,17 @@ using namespace std;
 // } Driver Code Ends
 class Solution {
   public:
-    void swap(int *a, int *b) {
-        int temp = *a;
-        *a = *b;
-        *b = temp;
-    }
-    
     void sort012(vector<int>& arr) {
-        int n = arr.size();
-        int left = 0, mid = 0, right = n - 1;
-        
-        while(mid <= right) {
-            if(arr[mid] == 0) {
-                swap(&arr[left], &arr[mid]);
-                left++;
-                mid++;
-            } else if(arr[mid] == 1) {
-                mid++;
-            } else {
-                swap(&arr[mid], &arr[right]);
-                right--;
-            }
+        int zero = 0, one = 0, two = 0;
+        for(int i=0; i<arr.size(); i++) {
+            if(arr[i] == 0) zero++;
+            else if(arr[i] == 1) one++;
+            else    two++;
         }
+        int i=0;
+        while(zero--) arr[i++] = 0;
+        while(one--) arr[i++] = 1;
+        while(two--) arr[i++] = 2;
     }
 };
 
@@ -57,6 +46,7 @@ int main() {
         }
 
         cout << endl;
+        cout << "~" << endl;
     }
     return 0;
 }
