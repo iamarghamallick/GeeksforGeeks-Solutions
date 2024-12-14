@@ -7,26 +7,21 @@ using namespace std;
 class Solution {
   public:
     int search(vector<int>& arr, int key) {
-        int left = 0, right = arr.size() - 1;
-        
-        while(left <= right) {
-            int mid = (left + right) / 2;
-            
-            if(arr[mid] == key)
+        int lo = 0, hi = arr.size() - 1;
+        while (lo <= hi) {
+            int mid = lo + (hi - lo) / 2;
+            if (arr[mid] == key)
                 return mid;
-                
-            if(arr[left] <= arr[mid]) {
-                // 1st half is sorted
-                if(key >= arr[left] && key < arr[mid])
-                    right = mid - 1;
-                else 
-                    left = mid + 1;
+            if (arr[mid] >= arr[lo]) {
+                if (key >= arr[lo] && key < arr[mid])
+                    hi = mid - 1;
+                else
+                    lo = mid + 1;
             } else {
-                // 2nd half is sorted
-                if(key > arr[mid] && key <= arr[right])
-                    left = mid + 1;
-                else 
-                    right = mid - 1;
+                if (key > arr[mid] && key <= arr[hi])
+                    lo = mid + 1;
+                else
+                    hi = mid - 1;
             }
         }
         
@@ -52,6 +47,7 @@ int main() {
         cin >> key;
         Solution ob;
         cout << ob.search(arr, key) << endl;
+        cout << "~" << endl;
     }
     return 0;
 }
