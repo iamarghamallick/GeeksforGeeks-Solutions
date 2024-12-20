@@ -6,30 +6,37 @@ using namespace std;
 // } Driver Code Ends
 class Solution {
   public:
-    vector<int> spirallyTraverse(vector<vector<int>> &mat) {
+    vector<int> spirallyTraverse(vector<vector<int> > &mat) {
+        vector<int> ans;
+ 
         int n = mat.size();
         int m = mat[0].size();
-        vector<int> ans;
-        vector<vector<bool>> visited(n, vector<bool>(m, false));
-        int dr[4] = { 0, 1, 0, -1 };
-        int dc[4] = { 1, 0, -1, 0 };
-        int r = 0, c = 0;
-        int di = 0;
+      
+        int top = 0, left = 0, bottom = n - 1, right = m - 1;
+    
+        while (top <= bottom && left <= right) {
+            for (int i = left; i <= right; i++)
+                ans.push_back(mat[top][i]);
         
-        for(int i=0; i<n*m; i++) {
-            ans.push_back(mat[r][c]);
-            visited[r][c] = true;
-            
-            int newr = r + dr[di];
-            int newc = c + dc[di];
-            
-            if(0 <= newr && newr < n && 0 <= newc && newc < m && !visited[newr][newc]) {
-                r = newr;
-                c = newc;
-            } else {
-                di = (di + 1) % 4;
-                r += dr[di];
-                c += dc[di];
+            top++;
+    
+            for (int i = top; i <= bottom; i++)
+                ans.push_back(mat[i][right]);
+    
+            right--;
+        
+            if (top <= bottom) {
+                for (int i = right; i >= left; i--)
+                    ans.push_back(mat[bottom][i]);
+    
+                bottom--;
+            }
+    
+            if (left <= right) {
+                for (int i = bottom; i >= top; i--)
+                    ans.push_back(mat[i][left]);
+        
+                left++;
             }
         }
         
@@ -45,9 +52,10 @@ int main() {
     while (t--) {
         int r, c;
         cin >> r >> c;
-        vector<vector<int>> matrix(r, vector<int>(c, 0));
+        vector<vector<int>> matrix(r);
 
         for (int i = 0; i < r; i++) {
+            matrix[i].assign(c, 0);
             for (int j = 0; j < c; j++) {
                 cin >> matrix[i][j];
             }
@@ -58,6 +66,9 @@ int main() {
         for (int i = 0; i < result.size(); ++i)
             cout << result[i] << " ";
         cout << endl;
+
+        cout << "~"
+             << "\n";
     }
     return 0;
 }
