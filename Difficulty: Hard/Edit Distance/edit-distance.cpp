@@ -1,52 +1,53 @@
 //{ Driver Code Starts
+// Initial Template for C++
 #include <bits/stdc++.h>
 using namespace std;
 
 
 // } Driver Code Ends
+
 class Solution {
   public:
-    int dp[100 + 1][100 + 1];
-  
-    int editDistance(string str1, string str2) {
-        int n = str1.size();
-        int m = str2.size();
-        memset(dp, -1, sizeof(dp));
-        return solve(str1, str2, n-1, m-1);
-    }
-    
-    int solve(string &s1, string &s2, int i, int j) {
-        if(i == -1)
-            return j +1;
-        if(j == -1)
-            return i +1;
-        if(dp[i][j] != -1)
-            return dp[i][j];
+    // Function to compute the edit distance between two strings
+    int editDistance(string& s1, string& s2) {
+        int n = s1.size(), m = s2.size();
+        vector<vector<int>> dp(n + 1, vector<int>(m + 1, 0));
 
-        int ins = 0, del = 0, rep = 0;
-        
-        if(s1[i] != s2[j]) {
-            ins = 1 + solve(s1, s2, i, j -1);
-            del = 1 + solve(s1, s2, i -1, j);
-            rep = 1 + solve(s1, s2, i-1, j-1);
-            
-            return dp[i][j] = min(ins, min(del, rep));
+        for (int i = 0; i <= n; i++) {
+            for (int j = 0; j <= m; j++) {
+                if (i == 0)
+                    dp[i][j] = j; // s1 is empty, insert all characters of s2
+                else if (j == 0)
+                    dp[i][j] = i; // s2 is empty, remove all characters of s1
+                else if (s1[i - 1] == s2[j - 1])
+                    dp[i][j] = dp[i - 1][j - 1]; // Characters match, no operation needed
+                else
+                    dp[i][j] = 1 + min({dp[i - 1][j],     // Remove
+                                        dp[i][j - 1],     // Insert
+                                        dp[i - 1][j - 1]}); // Replace
+            }
         }
-        
-        return dp[i][j] = solve(s1, s2, i-1, j-1);
+        return dp[n][m];
     }
 };
 
+
 //{ Driver Code Starts.
+
 int main() {
+
     int T;
     cin >> T;
+    cin.ignore();
     while (T--) {
-        string s, t;
-        cin >> s >> t;
+        string s1;
+        getline(cin, s1);
+        string s2;
+        getline(cin, s2);
         Solution ob;
-        int ans = ob.editDistance(s, t);
+        int ans = ob.editDistance(s1, s2);
         cout << ans << "\n";
+        cout << "~" << endl;
     }
     return 0;
 }
