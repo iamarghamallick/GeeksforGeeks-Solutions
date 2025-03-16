@@ -4,6 +4,7 @@ using namespace std;
 
 
 // } Driver Code Ends
+
 // Function to return minimum number of jumps to end of array
 
 class Solution {
@@ -38,6 +39,8 @@ class Solution {
 };
 
 
+
+
 //{ Driver Code Starts.
 
 int main() {
@@ -56,7 +59,7 @@ int main() {
             arr.push_back(number);
         }
         Solution obj;
-        cout << obj.minJumps(arr) << endl;
+        cout << obj.minJumps(arr) << endl << "~\n";
     }
     return 0;
 }
