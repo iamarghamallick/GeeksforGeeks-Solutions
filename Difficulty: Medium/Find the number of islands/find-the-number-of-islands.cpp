@@ -2,7 +2,9 @@
 #include <bits/stdc++.h>
 using namespace std;
 
+
 // } Driver Code Ends
+
 class Solution {
   public:
     int dirs[8][2] = {{-1, 0}, {0, 1}, {1, 0}, {0, -1}, {-1, -1}, {-1, 1}, {1, 1}, {1, -1}};
@@ -18,7 +20,7 @@ class Solution {
         for(auto dir : dirs) {
             int ni = i + dir[0];
             int nj = j + dir[1];
-            if(range(ni, nj, n, m) && grid[ni][nj] == '1' && !visited[ni][nj]) {
+            if(range(ni, nj, n, m) && grid[ni][nj] == 'L' && !visited[ni][nj]) {
                 visited[ni][nj] = true;
                 dfs(ni, nj, grid, visited);
             }
@@ -26,14 +28,14 @@ class Solution {
     }
     
     // Function to find the number of islands.
-    int numIslands(vector<vector<char>>& grid) {
+    int countIslands(vector<vector<char>>& grid) {
         int n = grid.size();
         int m = grid[0].size();
         vector<vector<bool>> visited(n, vector<bool>(m, false));
         int islandCount = 0;
         for(int i=0; i<n; i++) {
             for(int j=0; j<m; j++) {
-                if(grid[i][j] == '1' && !visited[i][j]) {
+                if(grid[i][j] == 'L' && !visited[i][j]) {
                     visited[i][j] = true;
                     dfs(i, j, grid, visited);
                     islandCount++;
@@ -43,6 +45,8 @@ class Solution {
         return islandCount;
     }
 };
+
+
 
 //{ Driver Code Starts.
 int main() {
@@ -58,8 +62,11 @@ int main() {
             }
         }
         Solution obj;
-        int ans = obj.numIslands(grid);
+        int ans = obj.countIslands(grid);
         cout << ans << '\n';
+
+        cout << "~"
+             << "\n";
     }
     return 0;
 }
