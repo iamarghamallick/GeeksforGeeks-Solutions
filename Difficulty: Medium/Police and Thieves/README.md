@@ -10,4 +10,4 @@
 <pre><span style="font-size: 18px;"><strong>Input: </strong>arr[] = ['T', 'T', 'P', 'P', 'T', 'P'], k = 2
 <strong>Output:</strong> 3
 <strong>Explanation: </strong>Maximum 3 thieves can be caught.</span></pre>
-<p><span style="font-size: 18px;"><strong>Constraints:</strong><br>1 ≤ arr.size() ≤ 10<sup>5</sup><br>1 ≤ k ≤ 1000<br>arr[i] = 'P' or 'T'</span></p></div><p><span style=font-size:18px><strong>Company Tags : </strong><br><code>Microsoft</code>&nbsp;<br><p><span style=font-size:18px><strong>Topic Tags : </strong><br><code>Greedy</code>&nbsp;<code>Algorithms</code>&nbsp;
+<p><span style="font-size: 18px;"><strong>Constraints:</strong><br>1 ≤ arr.size() ≤ 10<sup>5</sup><br>1 ≤ k ≤ 1000<br>arr[i] = 'P' or 'T'</span></p></div><p><span style=font-size:18px><strong>Company Tags : </strong><br><code>Microsoft</code>&nbsp;<br><p><span style=font-size:18px><strong>Topic Tags : </strong><br><code>Greedy</code>&nbsp;<code>Algorithms</code>&nbsp;<code>two-pointer-algorithm</code>&nbsp;
