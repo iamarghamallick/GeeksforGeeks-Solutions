@@ -1,7 +1,4 @@
-<h2><a href="https://www.geeksforgeeks.org/problems/inversion-of-array-1587115620/1">Count Inversions</a></h2><h3>Difficulty Level : Difficulty: Medium</h3><hr><div class="problems_problem_content__Xm_eO"><p><span style="font-size: 14pt;">Given an array of integers <strong>arr[]</strong>. Find the <strong>Inversion Count</strong> in the array.<br>T</span><span style="font-size: 14pt;">wo elements arr[i] and arr[j] form an inversion if <strong>arr[i] &gt; arr[j]</strong> and <strong>i &lt; j</strong>.</span></p>
-<blockquote>
-<p><span style="font-size: 14pt;"><em><strong>Inversion Count</strong>: </em>For an array, inversion count indicates how far (or close) the array is from being sorted. If the array is already sorted then the inversion count is 0. <br>If an array is sorted in the reverse order then the inversion count is the maximum.&nbsp;</span></p>
-</blockquote>
+<h2><a href="https://www.geeksforgeeks.org/problems/inversion-of-array-1587115620/1">Count Inversions</a></h2><h3>Difficulty Level : Difficulty: Medium</h3><hr><div class="problems_problem_content__Xm_eO"><p><span style="font-size: 14pt;">Given an array of integers <strong>arr[]</strong>. You have to find the <strong>Inversion Count</strong> of the array.&nbsp;<br></span><span style="font-size: 14pt;"><strong>Note :</strong>&nbsp;Inversion count is the number of pairs of elements (i, j) such that i &lt; j and arr[i] &gt; arr[j].</span></p>
 <p><span style="font-size: 14pt;"><strong>Examples:</strong></span></p>
 <pre><span style="font-size: 14pt;"><strong>Input</strong>: arr[] = [2, 4, 1, 3, 5]<br><strong>Output</strong>: 3
 <strong>Explanation</strong>: The sequence 2, 4, 1, 3, 5 has three inversions (2, 1), (4, 1), (4, 3).</span></pre>
