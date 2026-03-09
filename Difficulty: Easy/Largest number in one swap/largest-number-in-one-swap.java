@@ -2,7 +2,9 @@ class Solution {
     public String largestSwap(String s) {
         char[] arr = s.toCharArray();
         char maxDigit = '0';
-        int maxIndx = -1, l = -1, r = -1;
+        int maxIndx = -1;
+        int l = -1;
+        int r = -1;
 
         for (int i = arr.length - 1; i >= 0; i--) {
             if (arr[i] > maxDigit) {
