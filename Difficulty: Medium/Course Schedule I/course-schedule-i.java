@@ -1,32 +1,46 @@
 class Solution {
     public boolean canFinish(int n, int[][] prerequisites) {
-        ArrayList<ArrayList<Integer>> graph = new ArrayList<>();
-        for(int i=0; i<n; i++)
-            graph.add(new ArrayList<>());
-        for(int[] pre: prerequisites)
-            graph.get(pre[1]).add(pre[0]);
+        
+        ArrayList<ArrayList<Integer>> adj = new ArrayList<ArrayList<Integer>>();
+        for(int i=0; i<n; i++) adj.add(new ArrayList<Integer>());
+        for(int[] pre: prerequisites) {
+            int v = pre[0];
+            int u = pre[1];
             
-        int[] indegree = new int[n];
-        for(int i=0; i<n; i++)
-            for(int it: graph.get(i))
-                indegree[it]++;
-                
-        Queue<Integer> q = new LinkedList<>();
-        for(int i=0; i<n; i++) 
-            if(indegree[i] == 0)
-                q.add(i);
-                
-        ArrayList<Integer> topo = new ArrayList<>();
-        while(!q.isEmpty()) {
-            int node = q.poll();
-            topo.add(node);
-            for(int nei: graph.get(node)) {
-                indegree[nei]--;
-                if(indegree[nei] == 0)
-                    q.add(nei);
-            }
+            adj.get(u).add(v);
         }
         
-        return topo.size() == n;
+        if(findCycle(n, adj)) return false;
+        return true;
+    }
+    
+    private boolean findCycle(int n, ArrayList<ArrayList<Integer>> adj) {
+        
+        boolean[] vis = new boolean[n];
+        boolean[] path = new boolean[n];
+        
+        for(int i=0; i<n; i++) {
+            if(!vis[i]) {
+                if(dfs(i, adj, vis, path)) return true;
+            }
+        }
+        return false;
+    }
+    
+    private boolean dfs(
+        int node, ArrayList<ArrayList<Integer>> adj, boolean[] vis, boolean[] path
+    ) {
+        vis[node] = true;
+        path[node] = true;
+        
+        for(int adjNode: adj.get(node)) {
+            if(!vis[adjNode]) {
+                if(dfs(adjNode, adj, vis, path)) return true;
+            }
+            else if(path[adjNode]) return true;
+        }
+        
+        path[node] = false;
+        return false;
     }
 }
