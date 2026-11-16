@@ -6,9 +6,6 @@ class Solution {
 			if (arr[i] <= k) {
 				k++;
 			}
-			if (k < arr[i]) {
-				break;
-			}
 		}
 		
 		return k;
